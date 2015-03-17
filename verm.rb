@@ -1,7 +1,7 @@
 class Verm < Formula
   homepage "https://github.com/willbryant/verm"
-  url "https://github.com/willbryant/verm/archive/0.50.tar.gz"
-  sha1 "882072c4eeaa4c2ad42fce8557d2c79d1282eafd"
+  url "https://github.com/willbryant/verm/archive/0.51.tar.gz"
+  sha1 "1a2b4ee099b6427758460f45db6884e243e19235"
 
   depends_on "go" => :build
 
@@ -9,7 +9,7 @@ class Verm < Formula
     ENV["GOPATH"] = buildpath
     mkdir_p buildpath/"src/github.com/willbryant"
     ln_s buildpath, buildpath/"src/github.com/willbryant/verm"
-    system "go", "build", "github.com/willbryant/verm"
+    system "go", "build", "-ldflags", "-X main.compiled_version #{version} -X main.compiled_root_data_directory #{var/'verm'}", "github.com/willbryant/verm"
     bin.install "verm"
     mkdir_p var/"verm"
   end
@@ -18,7 +18,7 @@ class Verm < Formula
     system "make", "test_verm"
   end
 
-  plist_options :startup => true
+  plist_options :manual => "verm"
 
   def plist; <<-EOS.undent
     <?xml version="1.0" encoding="UTF-8"?>
@@ -30,8 +30,6 @@ class Verm < Formula
       <key>ProgramArguments</key>
       <array>
         <string>#{bin}/verm</string>
-        <string>--data</string>
-        <string>#{var}/verm</string>
       </array>
       <key>RunAtLoad</key>
       <true/>
