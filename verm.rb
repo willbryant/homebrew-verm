@@ -30,6 +30,8 @@ class Verm < Formula
       <key>ProgramArguments</key>
       <array>
         <string>#{bin}/verm</string>
+        <string>-listen</string>
+        <string>localhost</string>
       </array>
       <key>RunAtLoad</key>
       <true/>
