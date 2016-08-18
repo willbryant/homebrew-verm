@@ -1,7 +1,7 @@
 class Verm < Formula
   homepage "https://github.com/willbryant/verm"
   url "https://github.com/willbryant/verm/archive/0.52.tar.gz"
-  sha1 "12ea5962a0c5144f5107b3ed3dc89c867c37ddb2"
+  sha256 "14a7be3c78a613d9939eac873b52abfc0c836efd64064705abb408e93c800de9"
 
   depends_on "go" => :build
 
