@@ -9,7 +9,7 @@ class Verm < Formula
     ENV["GOPATH"] = buildpath
     mkdir_p buildpath/"src/github.com/willbryant"
     ln_s buildpath, buildpath/"src/github.com/willbryant/verm"
-    system "go", "build", "-ldflags", "-X main.compiled_version #{version} -X main.compiled_root_data_directory #{var/'verm'}", "github.com/willbryant/verm"
+    system "go", "build", "-ldflags", "-X main.compiled_version=#{version} -X main.compiled_root_data_directory=#{var/'verm'}", "github.com/willbryant/verm"
     bin.install "verm"
     mkdir_p var/"verm"
   end
