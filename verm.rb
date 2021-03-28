@@ -1,14 +1,14 @@
 class Verm < Formula
   homepage "https://github.com/willbryant/verm"
-  url "https://github.com/willbryant/verm/archive/0.52.tar.gz"
-  sha256 "14a7be3c78a613d9939eac873b52abfc0c836efd64064705abb408e93c800de9"
+  url "https://github.com/willbryant/verm/archive/1.5.2.tar.gz"
+  sha256 "720b43ff82e6ef78daf4de8b8604827e0bb0abf6294cd25aa37f01e319cc4f8b"
 
   depends_on "go" => :build
 
   def install
-    ENV["GOPATH"] = buildpath
-    mkdir_p buildpath/"src/github.com/willbryant"
-    ln_s buildpath, buildpath/"src/github.com/willbryant/verm"
+    ENV["GOPATH"] = buildpath/"go"
+    mkdir_p buildpath/"go/src/github.com/willbryant"
+    ln_s buildpath/"go", buildpath/"go/src/github.com/willbryant/verm"
     system "go", "build", "-ldflags", "-X main.compiled_version=#{version} -X main.compiled_root_data_directory=#{var/'verm'}", "github.com/willbryant/verm"
     bin.install "verm"
     mkdir_p var/"verm"
